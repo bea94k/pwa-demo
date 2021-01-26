@@ -55,6 +55,8 @@ const Camera = () => {
                 const takePhotoBtn = document.querySelector('#take-photo');
                 const snappedImg = document.querySelector('img#snap');
 
+                hideEl(snappedImg);
+
                 const stopVideo = () => {
                     track.stop();
                     hideEl(stopVideoBtn);
@@ -69,6 +71,7 @@ const Camera = () => {
                         showEl(snappedImg);
                         const photoUrl = URL.createObjectURL(blob);
                         snappedImg.src = photoUrl;
+                        stopVideo();
                     }).catch(function(error) {
                     console.log('takePhoto() error: ', error);
                     });
@@ -111,9 +114,7 @@ const Camera = () => {
             </div>
             <div className="video-frame">
                 <video id="camera-view" className="hidden" autoPlay playsInline controls={false} />
-            </div>
-            <div className="video-frame">
-            <img id="snap" className="hidden" alt="Pic captured from video stream" />
+                <img id="snap" className="hidden" alt="Pic captured from video stream" />
             </div>
         </div>
     );
