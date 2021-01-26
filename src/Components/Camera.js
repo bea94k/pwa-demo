@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Camera = () => {
     const [camerasList, setCamerasList] = useState([]);
+    const [selectedCamera, setSelectedCamera] = useState(0);
 
     useEffect(() => {
         saveCamerasList();
@@ -28,12 +29,13 @@ const Camera = () => {
         setCamerasList(newCamerasList);
     }
 
+    // TO DO: what happens when the camera changed when the video is already on?
     const playVideoFromCamera = async () => {
         if (camerasList.length > 0) {
             // use the first available video camera with a resolution of 1280x720 pixels
             const constraints = {
                 'video': {
-                    'deviceId': camerasList[0].deviceId,
+                    'deviceId': camerasList[selectedCamera].deviceId,
                     'width': {'min': 1280},
                     'height': {'min': 720}
                     }
@@ -100,6 +102,21 @@ const Camera = () => {
         }
     }
 
+    const changeCamera = () => {
+        console.log('active camera: ', selectedCamera);
+        console.log('changing camera...');
+        console.log('cameraList.length', camerasList.length);
+        let nextCamera;
+        if (selectedCamera === camerasList.length - 1) {
+            // last camera on the list, go back to index 0
+            nextCamera = 0;
+        } else {
+            nextCamera = selectedCamera + 1;
+        }
+        setSelectedCamera(nextCamera);
+        return;
+    }
+
 
     return (
         <div>
@@ -107,6 +124,9 @@ const Camera = () => {
             <div>
             <p className="btn" onClick={() => {console.log('Cameras from state: ', camerasList)}}>Console.log cameras from state</p>
             </div>
+            {camerasList.length > 1 ? (
+                <p className="btn" onClick={() => changeCamera()}>Change camera</p>
+            ) : null}
             <div>
             <p className="btn" id="start-video" onClick={() => playVideoFromCamera()}>Start video</p>
             <p className="btn hidden" id="stop-video">Stop video</p>
