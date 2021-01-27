@@ -3,17 +3,17 @@ import Camera from '../Camera/Camera';
 import AddPost from '../AddPost/AddPost';
 
 export default function Home() {
-    const [photoBlobUrl, setPhotoBlobUrl] = useState('')
+    const [photoBlob, setPhotoBlob] = useState()
 
-    const handlePhotoBlobUrl = (newPhotoBlob) => {
-        setPhotoBlobUrl(newPhotoBlob);
+    const handlePhotoBlob = (newPhotoBlob) => {
+        setPhotoBlob(newPhotoBlob);
     }
 
     return (
         <div>
             Home here
-            <Camera passPhotoBlobUrl={handlePhotoBlobUrl}/>
-            <AddPost photoBlobUrl={photoBlobUrl} />
+            <Camera passPhotoBlob={handlePhotoBlob}/>
+            <AddPost photoBlob={photoBlob} />
         </div>
     )
 }

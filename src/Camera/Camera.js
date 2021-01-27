@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./Camera.css";
 
-const Camera = ({passPhotoBlobUrl}) => {
+const Camera = ({passPhotoBlob}) => {
     const [camerasList, setCamerasList] = useState([]);
     const [selectedCamera, setSelectedCamera] = useState(0);
 
@@ -72,9 +72,9 @@ const Camera = ({passPhotoBlobUrl}) => {
                 const takePhoto = async () => {
                     imageCapture.takePhoto().then(function(blob) {
                         console.log('Took photo:', blob);
+                        passPhotoBlob(blob);
                         showEl(snappedImg);
                         const photoUrl = URL.createObjectURL(blob);
-                        passPhotoBlobUrl(photoUrl);
                         snappedImg.src = photoUrl;
                         stopVideo();
                     }).catch(function(error) {
