@@ -5,11 +5,11 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import Routers from './Routers';
-import NavBar from './Navbar/NavBar';
+
 
 ReactDOM.render(
   <React.StrictMode>
-<NavBar/>
+<Routers/>
   </React.StrictMode>,
   document.getElementById('root')
 );

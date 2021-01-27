@@ -17,9 +17,10 @@
     justify-content: end;
     margin-right: 2rem;
 }
-.list-item{
+.list-item {
     cursor: pointer;
     align-items: center;
+    text-decoration: none;
 }
 
 

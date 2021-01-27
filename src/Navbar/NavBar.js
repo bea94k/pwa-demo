@@ -1,31 +1,21 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Link,Switch,Route} from "react-router-dom";
-import Home from '../Home/Home';
-import PhotoGallery from '../PhotoGallery/PhotoGallery';
+import {Link} from "react-router-dom";
 import "./NavBar.css";
 
 export default function NavBar() {
     return (
-        <Router>       
+        <div>       
             <nav className="nav-container"> 
-                 <a className="app-logo">App Name</a>                
-              <ul className="nav-list">
-                <li className="list-item"> 
-                <Link to="/">Home</Link>
-                </li>
-               
-                <li className="list-item">
-                <Link to="/gallery">
+            <Link to="/" className="app-logo">App Name</Link>                
+              <ul className="nav-list">    
+                <Link to="/" className="list-item">Home</Link> 
+                <Link to="/gallery" className="list-item">
                 PhotoGallery
-                </Link>
-                </li>
+                </Link> 
             </ul>
             </nav>  
-             <Switch>         
-            <Route exact path="/">{Home}</Route>
-            <Route exact path="/gallery">{PhotoGallery}</Route>
-        </Switch>      
-        </Router>
+             
+        </div>
     )
 }
