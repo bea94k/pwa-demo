@@ -5,12 +5,9 @@ import 'firebase/firestore';   // for cloud firestore
 
 import config from '../config.json';
 
-try {
-    console.log('Initializing Firebase...');
-    // Initialize Firebase
-    firebase.initializeApp(config.FIREBASE_CONFIG);
-} catch (err) {
-    console.log('Error initializing Firebase: ', err)
-}
+console.log('Initializing Firebase...');
+// Initialize Firebase
+const firebaseApp = firebase.initializeApp(config.FIREBASE_CONFIG);
+const db = firebaseApp.firestore();
 
-export default firebase;
+export {db};
