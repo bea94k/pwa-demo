@@ -6,6 +6,7 @@ const Camera = () => {
 
     useEffect(() => {
         saveCamerasList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     const showEl = (el) => {
