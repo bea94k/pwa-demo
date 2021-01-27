@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./Camera.css";
 
-const Camera = () => {
+const Camera = ({passPhotoBlob}) => {
     const [camerasList, setCamerasList] = useState([]);
     const [selectedCamera, setSelectedCamera] = useState(0);
 
@@ -46,11 +46,8 @@ const Camera = () => {
             try {    
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
                 if (stream) {
-                console.log('stream: ', stream);
-
                 const videoTracks = stream.getVideoTracks();
                 const track = videoTracks[0];
-                console.log('track: ', track);
                 const imageCapture = new ImageCapture(track);
                 
                 const videoEl = document.querySelector('video#camera-view');
@@ -72,6 +69,7 @@ const Camera = () => {
                 const takePhoto = async () => {
                     imageCapture.takePhoto().then(function(blob) {
                         console.log('Took photo:', blob);
+                        passPhotoBlob(blob);
                         showEl(snappedImg);
                         const photoUrl = URL.createObjectURL(blob);
                         snappedImg.src = photoUrl;
