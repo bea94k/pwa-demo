@@ -21,7 +21,6 @@ const AddPost = ({photoBlob}) => {
         const blobUrl = URL.createObjectURL(photoBlob)
         // temporarily measure: the random string from blob url is assigned as the name of the photo file
         const newBlobName = blobUrl.slice(blobUrl.length - 36);
-        console.log(newBlobName);
 
         // if names of the files repeat, the old one in Storage is overwritten!
 
@@ -52,6 +51,7 @@ const AddPost = ({photoBlob}) => {
                         location: newPost.location
                     });
                 }).then (() => {
+                    console.log('New post added to Firestore.')
                     setPost({
                         photo: '',
                         title: '',
@@ -69,10 +69,7 @@ const AddPost = ({photoBlob}) => {
             <h1>Add your post</h1>
             <p>Photo here</p>
             {photoBlob ? (
-                <>
-                    <p>Photo blob from Home's state: {URL.createObjectURL(photoBlob)}</p>
                     <img id="photo-preview" src={URL.createObjectURL(photoBlob)} alt="Snapshot taken by the in-app camera" />
-                </>
             ) : null}
             <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
             <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/>

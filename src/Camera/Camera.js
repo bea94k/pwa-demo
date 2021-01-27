@@ -46,11 +46,8 @@ const Camera = ({passPhotoBlob}) => {
             try {    
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
                 if (stream) {
-                console.log('stream: ', stream);
-
                 const videoTracks = stream.getVideoTracks();
                 const track = videoTracks[0];
-                console.log('track: ', track);
                 const imageCapture = new ImageCapture(track);
                 
                 const videoEl = document.querySelector('video#camera-view');
