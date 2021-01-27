@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '../firebase/Firebase';
+import { db, storageRef } from '../firebase/Firebase';
 
 import "./AddPost.css";
 
@@ -18,15 +18,50 @@ const AddPost = ({photoBlob}) => {
     }
 
     const addNewPost = (newPost) => {
-        console.log(newPost);
+        const blobUrl = URL.createObjectURL(photoBlob)
+        // temporarily measure: the random string from blob url is assigned as the name of the photo file
+        const newBlobName = blobUrl.slice(blobUrl.length - 36);
+        console.log(newBlobName);
 
-        db.collection("posts").add(newPost);
+        // if names of the files repeat, the old one in Storage is overwritten!
 
-        setPost({
-            photo: '',
-            title: '',
-            location: ''
-        })
+        const uploadTask = storageRef.child(`images/${newBlobName}.jpg`).put(photoBlob);
+
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                
+            }, 
+            (error) => {
+                // Handle unsuccessful uploads
+                console.log('Something went wrong when uploading the photo: ', error)
+            }, 
+            () => {
+                // Handle successful uploads on complete
+                uploadTask.snapshot.ref.getDownloadURL().then((photoUrl) => {
+                    db.collection("posts").add({
+                        photo: photoUrl,
+                        title: newPost.title,
+                        location: newPost.location
+                    });
+                }).then (() => {
+                    setPost({
+                        photo: '',
+                        title: '',
+                        location: ''
+                    })
+                }).catch((err) => {
+                    console.log('Something went wrong when saving the post to Firestore: ', err)
+                });
+            }
+        );
     }
 
     return (

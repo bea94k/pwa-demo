@@ -10,5 +10,6 @@ console.log('Initializing Firebase...');
 const firebaseApp = firebase.initializeApp(config.FIREBASE_CONFIG);
 const db = firebaseApp.firestore();
 const storage = firebaseApp.storage();
+const storageRef = storage.ref()
 
-export {db, storage};
+export {db, storageRef};
