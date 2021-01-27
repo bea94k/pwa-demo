@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./Camera.css";
 
 const Camera = () => {
     const [camerasList, setCamerasList] = useState([]);
