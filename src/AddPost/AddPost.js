@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { db } from '../firebase/Firebase';
 
-const AddPost = () => {
+const AddPost = ({photoBlobUrl}) => {
     const [post, setPost] = useState({
         photo: '',
         title: '',
@@ -31,6 +31,7 @@ const AddPost = () => {
         <div>
             <h1>Add your post</h1>
             <p>Photo here</p>
+            <p>Photo blob from Home's state: {photoBlobUrl}</p>
             <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
             <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/>
             <p className="btn" onClick={() => addNewPost(post)}>ADD</p>
