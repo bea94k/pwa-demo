@@ -1,12 +1,41 @@
 import React,{useState} from 'react';
 import "./AddOns.css";
 
-const Title =()=> {
-    const [title,setTitle]= useState("")
+const AddOns =()=> {
+    const [title,setTitle]= useState("");
+    const [locationDetails, setLocationDetails] = useState(null)
+
+    const onSuccess = ()=>{
+        const url = "https://api.ipify.org/?format=json"
+        fetch(url)
+        .then(response =>response.json())
+        .then(({ip}) => {
+        fetch(`http://api.ipstack.com/${ip}?access_key=aa858b8e27dd9459fe5e3d8eaff031f9&format=1`)
+        .then(response =>response.json())
+        .then(data => setLocationDetails(data))
+     });
+ }
+
+
+    const onError = (error)=>{
+        setLocationDetails({
+            error
+        })
+    }
+    const getLocation = ()=> {
+        if(!("geolocation" in navigator)){
+            onError({
+                 code:0,
+                 message:'Geolocation is not supported by your browser'
+            }) 
+        }
+         navigator.geolocation.getCurrentPosition(onSuccess,onError); 
+    }
+        
 
     const handleSubmit=(e)=>{
    e.preventDefault();
-        alert("Sumbitted: " + title)
+        alert("Sumbitted: " + title + " " + `${locationDetails.city},${locationDetails.country_name}` )
     }
 
     const handleTitleChange = (e)=> {
@@ -22,11 +51,14 @@ const Title =()=> {
            <div>
            <input type="text" value = {title} onChange={handleTitleChange}/>
            </div>
-           <label>
+           <div>
+          <label onClick={getLocation}>
            Add Location:
            </label>
-           <div>
-           <input type="text" /> 
+          
+          {locationDetails && 
+          <p>{`${locationDetails.city},${locationDetails.country_name}`}</p>}
+        
            </div>
            </div>
            <button>Add</button>
@@ -35,4 +67,4 @@ const Title =()=> {
     )
 }
 
-export default Title
+export default AddOns;
