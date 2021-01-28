@@ -10,7 +10,7 @@ export default function NavBar() {
         <div>       
             <nav className="nav-container"> 
             <Link to="/" className="app-logo">
-                <img className="logo" src={logo} />    
+                <img className="logo" src={logo} alt="Druid logo" />    
             </Link>                
               <ul className="nav-list">    
                 <Link to="/" className="list-item">Home</Link> 
