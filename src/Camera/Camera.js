@@ -53,15 +53,41 @@ const Camera = ({passPhotoBlob}) => {
                 const videoEl = document.querySelector('video#camera-view');
                 const startVideoBtn = document.querySelector('#start-video');
                 const takePhotoBtn = document.querySelector('#take-photo');
+                const changeCameraBtn = document.querySelector('#change-camera');
                 const snappedImg = document.querySelector('img#snap');
 
                 hideEl(snappedImg);
-
+                
                 const stopVideo = () => {
                     track.stop();
                     hideEl(takePhotoBtn);
                     hideEl(videoEl);
                     showEl(startVideoBtn);
+                }
+                
+                const changeCamera = () => {
+                    //console.log('active camera: ', selectedCamera);
+                    //console.log('changing camera...');
+                    //console.log('cameraList.length', camerasList.length);
+                    track.stop();
+                    
+                    let nextCamera;
+                    if (selectedCamera === camerasList.length - 1) {
+                        // last camera on the list, go back to index 0
+                        nextCamera = 0;
+                    } else {
+                        nextCamera = selectedCamera + 1;
+                    }
+                    setSelectedCamera(nextCamera);
+                    playVideoFromCamera();
+                    return;
+                }
+                
+                // if there are several cameras and the change camera btn appears
+                // clicking on it will stop the video, change camera and start new wideo
+                if (changeCameraBtn) {
+                    showEl(changeCameraBtn);
+                    changeCameraBtn.addEventListener('click', () => {changeCamera()})
                 }
 
                 const takePhoto = async () => {
@@ -98,27 +124,14 @@ const Camera = ({passPhotoBlob}) => {
         }
     }
 
-    const changeCamera = () => {
-        console.log('active camera: ', selectedCamera);
-        console.log('changing camera...');
-        console.log('cameraList.length', camerasList.length);
-        let nextCamera;
-        if (selectedCamera === camerasList.length - 1) {
-            // last camera on the list, go back to index 0
-            nextCamera = 0;
-        } else {
-            nextCamera = selectedCamera + 1;
-        }
-        setSelectedCamera(nextCamera);
-        return;
-    }
+    
 
 
     return (
         <div>
             <h1>CAMERA</h1>
             {camerasList.length > 1 ? (
-                <p className="btn" onClick={() => changeCamera()}>Change camera</p>
+                <p className="btn hidden" id="change-camera" >Change camera</p>
             ) : null}
             <div>
             <p className="btn" id="start-video" onClick={() => playVideoFromCamera()}>Start video</p>
