@@ -1,0 +1,10 @@
+{
+    "FIREBASE_CONFIG": {
+        "apiKey": "AIzaSyBYJpB9UXhC_IEoJN6ZuN_2kQ9AKLodMww",
+        "authDomain": "druid-pwa-demo.firebaseapp.com",
+        "projectId": "druid-pwa-demo",
+        "storageBucket": "druid-pwa-demo.appspot.com",
+        "messagingSenderId": "768000019054",
+        "appId": "1:768000019054:web:cd8e033005e3648faaf47f"
+      }
+}
