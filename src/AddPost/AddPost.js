@@ -3,7 +3,7 @@ import { db, storageRef } from '../firebase/Firebase';
 
 import "./AddPost.css";
 
-const AddPost = ({photoBlob}) => {
+const AddPost = ({photoBlob, passPhotoBlob, togglePhotoAccepted}) => {
     const [post, setPost] = useState({
         photo: '',
         title: '',
@@ -56,7 +56,9 @@ const AddPost = ({photoBlob}) => {
                         photo: '',
                         title: '',
                         location: ''
-                    })
+                    });
+                    passPhotoBlob(null);
+                    togglePhotoAccepted();
                 }).catch((err) => {
                     console.log('Something went wrong when saving the post to Firestore: ', err)
                 });

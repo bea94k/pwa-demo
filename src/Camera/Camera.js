@@ -52,7 +52,6 @@ const Camera = ({passPhotoBlob}) => {
                 
                 const videoEl = document.querySelector('video#camera-view');
                 const startVideoBtn = document.querySelector('#start-video');
-                const stopVideoBtn = document.querySelector('#stop-video');
                 const takePhotoBtn = document.querySelector('#take-photo');
                 const snappedImg = document.querySelector('img#snap');
 
@@ -60,7 +59,6 @@ const Camera = ({passPhotoBlob}) => {
 
                 const stopVideo = () => {
                     track.stop();
-                    hideEl(stopVideoBtn);
                     hideEl(takePhotoBtn);
                     hideEl(videoEl);
                     showEl(startVideoBtn);
@@ -82,9 +80,7 @@ const Camera = ({passPhotoBlob}) => {
                 showEl(videoEl);
                 videoEl.srcObject = stream;
                 hideEl(startVideoBtn);
-                showEl(stopVideoBtn);
                 // TO DO: not the best solution to add a listener every time the video is started - many same listenersa at the same time?
-                stopVideoBtn.addEventListener('click', () => {stopVideo()});
                 showEl(takePhotoBtn);
                 takePhotoBtn.addEventListener('click', () => {takePhoto()});
                 
@@ -121,15 +117,11 @@ const Camera = ({passPhotoBlob}) => {
     return (
         <div>
             <h1>CAMERA</h1>
-            <div>
-            <p className="btn" onClick={() => {console.log('Cameras from state: ', camerasList)}}>Console.log cameras from state</p>
-            </div>
             {camerasList.length > 1 ? (
                 <p className="btn" onClick={() => changeCamera()}>Change camera</p>
             ) : null}
             <div>
             <p className="btn" id="start-video" onClick={() => playVideoFromCamera()}>Start video</p>
-            <p className="btn hidden" id="stop-video">Stop video</p>
             <p className="btn hidden" id="take-photo">Take photo</p>
             </div>
             <div className="video-frame">
