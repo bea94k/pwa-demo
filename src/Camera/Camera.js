@@ -79,7 +79,8 @@ const Camera = ({passPhotoBlob}) => {
                         nextCamera = selectedCamera + 1;
                     }
                     setSelectedCamera(nextCamera);
-                    playVideoFromCamera();
+                    setTimeout(playVideoFromCamera(), 6000);
+                    
                     return;
                 }
                 
