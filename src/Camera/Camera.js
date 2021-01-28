@@ -69,7 +69,7 @@ const Camera = ({passPhotoBlob}) => {
                     //console.log('active camera: ', selectedCamera);
                     //console.log('changing camera...');
                     //console.log('cameraList.length', camerasList.length);
-                    track.stop();
+                    stopVideo();
                     
                     let nextCamera;
                     if (selectedCamera === camerasList.length - 1) {
@@ -79,7 +79,6 @@ const Camera = ({passPhotoBlob}) => {
                         nextCamera = selectedCamera + 1;
                     }
                     setSelectedCamera(nextCamera);
-                    setTimeout(playVideoFromCamera(), 6000);
                     
                     return;
                 }
