@@ -35,7 +35,7 @@ const AddOns =()=> {
 
     const handleSubmit=(e)=>{
    e.preventDefault();
-        alert("Sumbitted: " + title + " " + `${locationDetails.city},${locationDetails.country_name}` )
+        alert("Sumbitted: " + title + `${locationDetails.city},${locationDetails.country_name}` )
     }
 
     const handleTitleChange = (e)=> {
@@ -52,9 +52,9 @@ const AddOns =()=> {
            <input type="text" value = {title} onChange={handleTitleChange}/>
            </div>
            <div>
-          <label onClick={getLocation}>
+          <span onClick={getLocation}>
            Add Location:
-           </label>
+           </span>
           
           {locationDetails && 
           <p>{`${locationDetails.city},${locationDetails.country_name}`}</p>}
