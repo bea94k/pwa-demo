@@ -15,12 +15,12 @@ const AddOns = ({handlePostChange, title}) => {
         fetch(url)
         .then(response =>response.json())
         .then(({ip}) => {
-            fetch(`https://geolocation-db.com/json/09068b10-55fe-11eb-8939-299a0c3ab5e5/${ip}`)
+            fetch(`https://geo.ipify.org/api/v1?apiKey=at_dp3P6TrdEe8sOITMucPTvxr0675es&ipAddress=${ip}`)
             .then(response =>response.json())
             .then(data => {
-                console.log('location data: ', data)
-                setLocationDetails(data);
-                handlePostChange('location', `${data.city}, ${data.country_name}`)
+                console.log('location data: ', data.location)
+                setLocationDetails(data.location);
+                handlePostChange('location', `${data.location.city}, ${data.location.country}`)
             })
         });
     }
@@ -62,7 +62,7 @@ const AddOns = ({handlePostChange, title}) => {
               locationDetails === 'unknown' ? (
                 <p>Location access denied.</p>
               ) : (
-                  <p>{`Your location: ${locationDetails.city},${locationDetails.country_name}`}</p>
+                  <p>{`Your location: ${locationDetails.city},${locationDetails.country}`}</p>
               )
           ) : (
               <p>Trying to get your location...</p>
