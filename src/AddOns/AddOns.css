@@ -1,3 +1,28 @@
 .add-wrapper{
+    margin-top: 1rem;
     display:flex;
+    justify-content: space-evenly;
+}
+
+h4 {
+    margin: 0;
+}
+
+textarea {
+    border: none;
+    /* border-bottom: black 1px solid; */
+    background-color: rgb(254, 238, 213);
+    height: 100px;
+    width: 200px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+label {
+    padding-right: 0.5rem;
 }

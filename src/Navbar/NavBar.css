@@ -1,4 +1,5 @@
 .nav-container{
+    background-color: #171B1F;
     display: flex;
     justify-content: space-between;
     height: 80px;
@@ -30,4 +31,8 @@
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
+}
+
+img.logo {
+    height: 60px;
 }

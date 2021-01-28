@@ -50,25 +50,25 @@ const AddOns = ({handlePostChange, title}) => {
     return (
         <div>
         <div className="add-wrapper">
+           <div className="input-wrapper">
            <label>
             Title:
            </label>
-           <div>
-            <input type="text" value = {title} onChange={handleTitleChange}/>
-           </div>
-           <div>
+            <textarea value = {title} onChange={handleTitleChange}/>
+            </div>
+           
           
           {locationDetails ? (
               locationDetails === 'unknown' ? (
                 <p>Location access denied.</p>
               ) : (
-                  <p>{`Your location: ${locationDetails.city},${locationDetails.country}`}</p>
+                  <h4>{`Your location: ${locationDetails.city}, ${locationDetails.country}`}</h4>
               )
           ) : (
               <p>Trying to get your location...</p>
           )}
         
-           </div>
+           
            </div>
         </div>
     )

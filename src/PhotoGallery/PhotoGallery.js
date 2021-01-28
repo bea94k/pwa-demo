@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import {db} from "./../firebase/Firebase";
 
+import './PhotoGallery.css';
+
 const PhotoGallery = () => {
     const [gallery, setGallery] = useState([]);
 
@@ -25,13 +27,18 @@ const PhotoGallery = () => {
 
     return (
         <div>
+            <h1 className="centered">GALLERY</h1>
+            <div className="posts-grid">
             {gallery.map(({location,id,photo,title})=>{
-                return <div key={id}>
-                  <img src={photo} alt="photos" width="600" height="400"/>
-                  <div>{title}</div>
-                  <div>{location}</div>
+                return <div className="post-card" key={id}>
+                  <img src={photo} alt="photos" />
+                <div className="card-text">
+                    <div>Title: {title}</div>
+                    <div>Location: {location}</div>
+                  </div>
                 </div>
             })}
+            </div>
         </div>
     )
 }

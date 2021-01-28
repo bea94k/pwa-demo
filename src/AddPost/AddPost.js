@@ -77,12 +77,14 @@ const AddPost = ({photoBlob, passPhotoBlob, togglePhotoAccepted}) => {
     return (
         <div>
             <h1>Add your post</h1>
+            <div className="post-frame">
             {photoBlob ? (
                     <img id="photo-preview" src={URL.createObjectURL(photoBlob)} alt="Snapshot taken by the in-app camera" />
-            ) : null}
+                    ) : null}
             {/* <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
             <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/> */}
             <AddOns handlePostChange={handlePostChange} title={post.title} />
+            </div>
             <p className="btn" onClick={() => addNewPost(post)}>ADD</p>
         </div>
     );
