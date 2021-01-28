@@ -11,12 +11,19 @@ const AddPost = ({photoBlob, passPhotoBlob, togglePhotoAccepted}) => {
         location: ''
     });
 
-    const handleInputChange = (e) => {
+   /*  const handleInputChange = (e) => {
         setPost({
             ...post,
             [e.target.name]: e.target.value
         });
-    }
+    } */
+
+    const handlePostChange = (key, value) => {
+        setPost({
+            ...post,
+            [key]: value
+        });
+    };
 
     const addNewPost = (newPost) => {
         const blobUrl = URL.createObjectURL(photoBlob)
@@ -70,14 +77,13 @@ const AddPost = ({photoBlob, passPhotoBlob, togglePhotoAccepted}) => {
     return (
         <div>
             <h1>Add your post</h1>
-            <p>Photo here</p>
             {photoBlob ? (
                     <img id="photo-preview" src={URL.createObjectURL(photoBlob)} alt="Snapshot taken by the in-app camera" />
             ) : null}
-            <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
-            <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/>
+            {/* <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
+            <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/> */}
+            <AddOns handlePostChange={handlePostChange} title={post.title} />
             <p className="btn" onClick={() => addNewPost(post)}>ADD</p>
-            <AddOns/>
         </div>
     );
 }
