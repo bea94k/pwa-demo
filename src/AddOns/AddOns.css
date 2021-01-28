@@ -22,3 +22,7 @@ textarea {
     display: flex;
     align-items: flex-start;
 }
+
+label {
+    padding-right: 0.5rem;
+}
