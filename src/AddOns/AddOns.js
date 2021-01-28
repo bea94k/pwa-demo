@@ -15,7 +15,7 @@ const AddOns = ({handlePostChange, title}) => {
         fetch(url)
         .then(response =>response.json())
         .then(({ip}) => {
-            fetch(`http://api.ipstack.com/${ip}?access_key=aa858b8e27dd9459fe5e3d8eaff031f9&format=1`)
+            fetch(`https://geolocation-db.com/json/09068b10-55fe-11eb-8939-299a0c3ab5e5/${ip}`)
             .then(response =>response.json())
             .then(data => {
                 console.log('location data: ', data)
