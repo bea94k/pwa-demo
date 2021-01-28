@@ -131,7 +131,7 @@ const Camera = ({passPhotoBlob}) => {
             {camerasList.length > 1 ? (
                 <p className="btn hidden" id="change-camera" >Change camera</p>
             ) : null}
-            <div>
+            <div className="btn-wrapper">
             <p className="btn" id="start-video" onClick={() => playVideoFromCamera()}>Start video</p>
             <p className="btn hidden" id="take-photo">Take photo</p>
             </div>

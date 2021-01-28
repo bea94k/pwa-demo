@@ -3,6 +3,8 @@ import Camera from '../Camera/Camera';
 import Preview from '../Preview/Preview';
 import AddPost from '../AddPost/AddPost';
 
+import "./Home.css";
+
 export default function Home() {
     const [photoBlob, setPhotoBlob] = useState();
     const [photoAccepted, setPhotoAccepted] = useState(false);
@@ -14,7 +16,7 @@ export default function Home() {
         setPhotoAccepted(!photoAccepted);
     }
     return (
-        <div>
+        <div id="home-page">
                 {/* <p>Photo blob exists: {photoBlob ? 'yes' : 'no'}</p>
                 <p>Photo is accepted: {photoAccepted.toString()}</p> */}
                 {!photoBlob ? (
