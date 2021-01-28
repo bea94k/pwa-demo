@@ -11,7 +11,6 @@ export default function Home() {
 
     return (
         <div>
-            Home here
             <Camera passPhotoBlob={handlePhotoBlob}/>
             <AddPost photoBlob={photoBlob} />
         </div>

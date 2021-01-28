@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AddOns from "../AddOns/AddOns";
 import { db, storageRef } from '../firebase/Firebase';
 
 import "./AddPost.css";
@@ -74,6 +75,7 @@ const AddPost = ({photoBlob}) => {
             <input onChange={handleInputChange} name="title" type="text" placeholder="Title" value={post.title || ''}/>
             <input onChange={handleInputChange} name="location" type="text" placeholder="Location" value={post.location || ''}/>
             <p className="btn" onClick={() => addNewPost(post)}>ADD</p>
+            <AddOns/>
         </div>
     );
 }
