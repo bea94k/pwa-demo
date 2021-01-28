@@ -70,6 +70,7 @@ const Camera = ({passPhotoBlob}) => {
                     //console.log('changing camera...');
                     //console.log('cameraList.length', camerasList.length);
                     stopVideo();
+                    hideEl(changeCameraBtn);
                     
                     let nextCamera;
                     if (selectedCamera === camerasList.length - 1) {
