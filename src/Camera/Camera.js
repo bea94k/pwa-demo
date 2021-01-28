@@ -125,9 +125,6 @@ const Camera = ({passPhotoBlob}) => {
         }
     }
 
-    
-
-
     return (
         <div>
             <h1>CAMERA</h1>

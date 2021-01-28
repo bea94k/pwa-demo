@@ -43,18 +43,12 @@ const AddOns = ({handlePostChange, title}) => {
     }
         
 
-    /* const handleSubmit=(e)=>{
-   e.preventDefault();
-        alert("Sumbitted: " + title + `${locationDetails.city},${locationDetails.country_name}` )
-    } */
-
     const handleTitleChange = (e) => {
         handlePostChange('title', e.target.value)
     }
 
     return (
         <div>
-        {/* <form onSubmit= {handleSubmit}> */}
         <div className="add-wrapper">
            <label>
             Title:
@@ -76,8 +70,6 @@ const AddOns = ({handlePostChange, title}) => {
         
            </div>
            </div>
-           {/* <button>Add</button>
-        </form> */}
         </div>
     )
 }

@@ -4,8 +4,6 @@ import Home from "./Home/Home";
 import PhotoGallery from "./PhotoGallery/PhotoGallery";
 import NavBar from "./Navbar/NavBar";
 
-
-
 const Routers = () => {
     return (
         <BrowserRouter>
