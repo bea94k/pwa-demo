@@ -1,9 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import "./AddOns.css";
 
 const AddOns = ({handlePostChange, title}) => {
     //const [title,setTitle]= useState("");
-    const [locationDetails, setLocationDetails] = useState(null)
+    const [locationDetails, setLocationDetails] = useState(null);
+
+    useEffect(() => {
+        getLocation();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onSuccess = () => {
         const url = "https://api.ipify.org/?format=json"
@@ -21,9 +26,9 @@ const AddOns = ({handlePostChange, title}) => {
     }
 
     const onError = (error) => {
-        setLocationDetails({
-            error
-        });
+        setLocationDetails(
+            'unknown'
+        );
         console.log('Something went wrong getting location: ', error)
     }
 
@@ -58,12 +63,16 @@ const AddOns = ({handlePostChange, title}) => {
             <input type="text" value = {title} onChange={handleTitleChange}/>
            </div>
            <div>
-          <span onClick={getLocation}>
-           Add Location:
-           </span>
           
-          {locationDetails && 
-          <p>{`${locationDetails.city},${locationDetails.country_name}`}</p>}
+          {locationDetails ? (
+              locationDetails === 'unknown' ? (
+                <p>Location access denied.</p>
+              ) : (
+                  <p>{`Your location: ${locationDetails.city},${locationDetails.country_name}`}</p>
+              )
+          ) : (
+              <p>Trying to get your location...</p>
+          )}
         
            </div>
            </div>

@@ -12,8 +12,8 @@ const Preview = ({photoBlob, passPhotoBlob, togglePhotoAccepted}) => {
             {photoBlob ? (
                 <img src={URL.createObjectURL(photoBlob)} alt='Preview' />
             ) : null}
-            <p className="btn" onClick={() => takeNewPhoto()}>Take a new photo</p>
             <p className="btn" onClick={() => acceptPreviewPhotoPhoto()}>Continue with this photo</p>
+            <p className="btn" onClick={() => takeNewPhoto()}>Take a new photo</p>
         </div>
     );
 }
