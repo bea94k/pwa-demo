@@ -15,10 +15,10 @@ const AddOns = ({handlePostChange, title}) => {
         fetch(url)
         .then(response =>response.json())
         .then(({ip}) => {
-            fetch(`https://api.ipstack.com/${ip}?access_key=aa858b8e27dd9459fe5e3d8eaff031f9&format=1`)
+            fetch(`http://api.ipstack.com/${ip}?access_key=aa858b8e27dd9459fe5e3d8eaff031f9&format=1`)
             .then(response =>response.json())
             .then(data => {
-                // console.log('location data: ', data)
+                console.log('location data: ', data)
                 setLocationDetails(data);
                 handlePostChange('location', `${data.city}, ${data.country_name}`)
             })
