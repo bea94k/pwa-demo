@@ -19,7 +19,7 @@
 
 
 .photo-prev-frame {
-  border: solid 5px rgb(255, 89, 0);
+  border: solid 5px #ff5900;
   border-radius: 5px;
   min-width: 300px;
   /* max-height: 300px; */
