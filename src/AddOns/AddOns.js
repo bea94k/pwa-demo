@@ -62,7 +62,10 @@ const AddOns = ({handlePostChange, title}) => {
               locationDetails === 'unknown' ? (
                 <p>Location access denied.</p>
               ) : (
+                  <>
                   <h4>{`Your location: ${locationDetails.city}, ${locationDetails.country}`}</h4>
+                  <h4>{`Your lat/lgt: ${locationDetails.lat}, ${locationDetails.lng}`}</h4>
+                  </>
               )
           ) : (
               <p>Trying to get your location...</p>
