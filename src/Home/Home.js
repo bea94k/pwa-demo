@@ -22,8 +22,8 @@ export default function Home() {
     const fetchMsg = () => {
         fetch('/.netlify/functions/hello')
         .then(res => res.json())
-        .then(({message}) => setMsg({message}))
-        //.catch((err) => setMsg(`Something went wrong when fetching from backend (${err}).`))
+        .then(({msg}) => setMsg(msg))
+        .catch((err) => setMsg(`Something went wrong when fetching from backend (${err}).`))
     }
 
 

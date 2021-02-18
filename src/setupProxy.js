@@ -1,4 +1,4 @@
-/* const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
   app.use(
@@ -8,9 +8,9 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
-}; */
+};
 
-const proxy = require("http-proxy-middleware");
+/* const proxy = require("http-proxy-middleware");
 
 module.exports = function(app) {
     app.use(proxy("/.netlify/functions/", {
@@ -19,4 +19,4 @@ module.exports = function(app) {
               "^/\\.netlify/functions": ""
           }
         }));
-};
+}; */
